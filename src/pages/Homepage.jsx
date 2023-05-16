@@ -9,6 +9,7 @@ import { useEffect, useState, useRef } from 'react'
 import { Eight, EightBall, Five, Four, Nine, One, Seven, Six, Ten, Recycle } from '../components/models'
 import Header from '../components/Header' 
 import { PresentationControls } from '@react-three/drei' 
+import { PerspectiveCamera } from '@react-three/drei'
 
 import recycleImg from '../assets/images/recycle.png'
 
@@ -17,6 +18,8 @@ import ScrollContainer from 'react-indiana-drag-scroll'
 
 
 const Homepage = () => {
+
+    // useEffect(() => alert('Click on components in bottom bar'), [])
 
     const beadWidth = 1.75 
 
@@ -109,13 +112,8 @@ const Homepage = () => {
     } 
 
     useEffect(() => { 
-        // console.log('deleted');
-        // console.log('hi')
         console.log(modelArray)
         console.log('actualIndex   ' + actualIndex)
-        // console.log('modelPositionX   ' + modelPositionX)
-        // console.log('offset   ' + offset)
-        // console.log('hi')
     }, [modelArray, actualIndex, modelPositionX, offset]) 
 
 
@@ -189,7 +187,7 @@ const Homepage = () => {
             <section id = {styles.maincanvaswrapper}>
 
                 <Canvas id = {styles.maincanvas}>
-                    <MyCamera zoom = {zoom} />
+                    {/* <MyCamera zoom = {zoom} /> */}
                     {/* <Environment preset="city" />
                     <ambientLight intensity={1} />
                     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} shadow-mapSize={2048} castShadow /> */}
@@ -203,7 +201,13 @@ const Homepage = () => {
                     <Cloud scale={.7} position={[-5, -6, -5]} />
                     <Environment preset="city" />
                     <Sky turbidity={[-100]} />
-                    <OrbitControls  />
+                    <OrbitControls />
+                    <PerspectiveCamera
+                        makeDefault
+                        position={[0, 0.9, 25]}
+                        fov={60}
+                        zoom={1}
+                    />
                     {/* <color attach = {'background'} args = {['#fff']} /> */}
                     {/* <fog attach="fog" args={['#101010', 10, 20]} /> */}
                     <Experience removeModel = {removeModel} modelPositionX = {modelPositionX} modelArray = {modelArray} offset = {offset} showPreview = {showPreview} actualIndex = {actualIndex} />
@@ -227,41 +231,23 @@ const Homepage = () => {
 
             <div id = {styles.controls}>
 
-                    <div className = {`${styles.arrowsandpreview} d-flex justify-content-between px-4 pt-3`}>
-                        <button onClick={() => moveLeft()} className = {`${styles.left} mx-2`}>
+                    <div className = {`${styles.arrowsandpreview} d-flex ${showPreview ? 'justify-content-between' : 'justify-content-center'} px-4 pt-3`}>
+                        <button onClick={() => moveLeft()} className = {`${styles.left} mx-2 ${showPreview ? 'd-block' : 'd-none'}`}>
                             <ArrowRight width = "50" fill = "antiquewhite" className = "ms-auto rotate-180" />
                         </button>
 
                         <div onClick={() => setShowPreview(!showPreview)} className = {`${styles.preview} mx-2`}>
                             <ButtonPrimary backgroundColor = {'rgb(10, 0, 100)'}>{showPreview ? 'PREVIEW' : 'EDIT'}</ButtonPrimary>
                         </div>
-                        <div onClick={removeModel} className = {`${styles.preview} mx-2`}>
+                        <div onClick={removeModel} className = {`${styles.preview} mx-2  ${showPreview ? 'd-block mx-auto' : 'd-none'}`}>
                             <ButtonPrimary backgroundColor = {'rgb(204, 0, 30)'}>REMOVE</ButtonPrimary>
                         </div>
 
-                        <button onClick={() => moveRight()} className = {`${styles.right} mx-2`}>
+                        <button onClick={() => moveRight()} className = {`${styles.right} mx-2 ${showPreview ? 'd-block' : 'd-none'}`}>
                             <ArrowRight width = "50" fill = "antiquewhite" className = "ms-auto" />
                         </button>
                     </div>
                     
-                    {/* <ScrollContainer className = {`${styles.components} d-flex py-4 flex-wrappp px-4`}>
-
-                        {models.map((model, index) => {
-
-                            return (
-                                <div className = "px-2 col-3 py-2" key = {index}    >
-                                    <button onClick={() => addModel({model})} className = {`${styles.singlemodel} w-100`} ref = {height} style = {{height: `${componentHeight}px`}}>
-                                        <Canvas>
-                                            <Environment preset="city" />
-                                            <ambientLight intensity={1} />
-                                                {model.model}
-                                        </Canvas>
-                                </button>
-                                </div>
-                            )
-                        })}
-
-                    </ScrollContainer> */}
                     <div className = {`${styles.components} d-flex py-4 flex-wrappp px-4`}>
 
                         {models.map((model, index) => {
@@ -278,7 +264,7 @@ const Homepage = () => {
                                                 </mesh>
                                         </Canvas>
                                     </div> */}
-                                    <button onClick={() => addModel({model})} className = {`${styles.singlemodel} w-100`} ref = {height} style = {{height: `${componentHeight}px`}}>
+                                    <button onClick={() => addModel({model})} className = {`${styles.singlemodel} w-100`} ref = {height} style = {{height: `${componentHeight}px`}} disabled = {!showPreview}>
                                        
                                         <Canvas>
                                             <PresentationControls 

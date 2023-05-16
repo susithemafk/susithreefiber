@@ -48,7 +48,25 @@
 		// box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.15);
 		box-shadow: inset 0px 0px 15px rgb(0 0 0 / 61%);
 		width: 100px;
-		height: 100px;
+		height: 100px; 
+		position: relative; 
+
+		&:disabled {
+			&::after {
+				content: 'edit'; 
+				position: absolute; 
+				height: 100%; 
+				width: 100%; 
+				top: 0; 
+				left: 0; 
+				display: flex; 
+				justify-content: center; 
+				align-items: center; 
+				font-size: 1.5rem; 
+				color: #fff; 
+				background-color: rgba(0, 0, 0, 0.5)
+			}
+		}
 	} 
 
 	.zoomslider {

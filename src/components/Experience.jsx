@@ -27,31 +27,31 @@ const Experience = ({modelPositionX, modelArray, offset, showPreview, actualInde
 	if (showPreview) {
 
 	return (
-					<Suspense fallback = {null}>
+		<Suspense fallback = {null}>
 
-							<group position = {[modelPositionX, 0, 0]}>
+				<group position = {[modelPositionX, 0, 0]}>
 
-								{modelArray.map((model, index) => {
+					{modelArray.map((model, index) => {
 
-									if (index === actualIndex + 1) {
-										count++
-										return (
-											<mesh key = {index} className = {`${styles.active} del`}>
-												{model.modelWithOffset}
-												<group scale={[1,1,1]} position = {[modelArray[index - 1].modelWithOffset.props.position[0], 2, 0]} onClick = {() => console.log('clicked delete')} className = {`${styles.delete} del`}>
-													{/* <Delete /> */}
-													<ArrowDown /> 
-													{/* <Recycle /> */}
-												</group>
-											</mesh>
-										) 
-									}
-									return <mesh key = {index}>{model.modelWithOffset}</mesh>
-								})}
+						if (index === actualIndex + 1) {
+							count++
+							return (
+								<mesh key = {index} className = {`${styles.active} del`}>
+									{model.modelWithOffset}
+									<group scale={[1,1,1]} position = {[modelArray[index - 1].modelWithOffset.props.position[0], 2, 0]} onClick = {() => console.log('clicked delete')} className = {`${styles.delete} del`}>
+										{/* <Delete /> */}
+										<ArrowDown /> 
+										{/* <Recycle /> */}
+									</group>
+								</mesh>
+							) 
+						}
+						return <mesh key = {index}>{model.modelWithOffset}</mesh>
+					})}
 
-							</group> 					
+				</group> 					
 
-					</Suspense>
+		</Suspense>
 
 	)} else {
 		return (
