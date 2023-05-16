@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/susithreefiber/static/css/main.e18c7ea8.css",
-    "main.js": "/susithreefiber/static/js/main.f55afcb4.js",
+    "main.css": "/susithreefiber/static/css/main.66758c9a.css",
+    "main.js": "/susithreefiber/static/js/main.b545fa74.js",
     "static/media/recycle.png": "/susithreefiber/static/media/recycle.8c0d9aaccd1b9b6214eb.png",
     "index.html": "/susithreefiber/index.html",
-    "main.e18c7ea8.css.map": "/susithreefiber/static/css/main.e18c7ea8.css.map",
-    "main.f55afcb4.js.map": "/susithreefiber/static/js/main.f55afcb4.js.map"
+    "main.66758c9a.css.map": "/susithreefiber/static/css/main.66758c9a.css.map",
+    "main.b545fa74.js.map": "/susithreefiber/static/js/main.b545fa74.js.map"
   },
   "entrypoints": [
-    "static/css/main.e18c7ea8.css",
-    "static/js/main.f55afcb4.js"
+    "static/css/main.66758c9a.css",
+    "static/js/main.b545fa74.js"
   ]
 }
