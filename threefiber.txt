@@ -1,0 +1,19 @@
+npm install three @react-three/fiber @react-three/drei 
+
+npm install cuncurrently 
+edit scripts to 
+    "scripts": {
+        "start": "concurrently \"npm run sass:watch\" \"react-scripts start\"",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "sass": "sass src/index.scss src/index.css",
+        "sass:watch": "sass src/index.scss src/index.css -w"
+    },
+
+npx gltfjsx public/models/head.gltf 
+pak tam zmenim function na const => 
+a pridam exp def head 
+a usegltf path je ./models/head.gltf a preload path taky zmenit 
+
+do suspense v experience dam ciste <Head /> 
